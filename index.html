@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html ng-app="SanDiegoTopSpots">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Retrieve JSON data on SD top spots">
+	<meta name="author" content="Vincent Duong">
+	<title>San Diego Top Spots</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<!-- <link rel="stylesheet" type="text/css" href="index.css">	 -->
+</head>
+<body ng-controller="controller">
+<!-- 	<div id="map"></div> -->
+	<div class="container">
+		<div>
+			<table id="table" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Link</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="topSpot in topSpots">
+						<td>{{topSpot.name}}</td>
+						<td>{{topSpot.description}}</td>
+						<td><button class="btn btn-danger">
+							<a href='https://www.google.com/maps?q= 
+								{{topSpot.location[0]}},{{topSpot.location[1]}}'>
+								Open in Google Maps
+							</a></button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>		
+	</div>
+
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAohJ1gIU17ImYPxMD21WrWrAM6bUzWm9A&callback=initMap"
+        async defer></script> -->
+   	<script src="index.js"></script>
+</body>
+</html>
