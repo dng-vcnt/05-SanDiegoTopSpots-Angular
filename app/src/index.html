@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Retrieve JSON data on SD top spots">
+	<meta name="author" content="Vincent Duong">
+	<title>San Diego Top Spots</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/bulma/css/bulma.css">
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/index.css">	
+</head>
+<body ng-controller="TopSpotsController as ctrl">
+	<div class="columns is-mobile">
+<!-- 		<div class="row">
+			<div class="col-xs-12">
+				<ui-gmap-google-map center='main.map.center' zoom='main.map.zoom'>
+					<ui-gmap-markers models="main.markers.models" coords="main.markers.coordsKey" idkey="main.markers.idKey" options="		main.markers.optionsKey" events="main.markers.events">
+					</ui-gmap-markers>
+				</ui-gmap-google-map>
+			</div>
+		</div> -->
+		<!-- Add Location Form Start -->
+			<div class="column is-one-third">
+				<div class="panel">
+					<div class="panel-heading">
+						<h4>Add a New Location!</h4>
+					</div>
+					<div class="panel-body">
+						<form id="addForm" ng-submit="ctrl.addLocation()">
+							<div class="panel-block">
+								<label class="label">Location Name</label>
+								<input class="input" type="text" 
+									ng-model="ctrl.newLocation.name">
+							</div>
+							<div class="panel-block">
+								<label class="label">Location Description</label>
+								<textarea form="addForm" class="input" type="text"
+									ng-model="ctrl.newLocation.description"></textarea>
+							</div>
+							<div class="panel-block">
+								<label class="label">Location Latitude</label>
+								<input class="input" type="number" step=0.0000001 
+									ng-model="ctrl.newLocation.location[0]">
+							</div>
+							<div class="panel-block">
+								<label class="label">Location Longitude</label>
+								<input class="input" type="number" step=0.0000001 
+									ng-model="ctrl.newLocation.location[1]">
+							</div>
+							<div class="panel-block">
+								<button class="button is-primary" type="submit">
+									Add Location
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<ui-gmap-google-map center='ctrl.map.center' zoom='ctrl.map.zoom'
+					class='angular-google-map-container'></ui-gmap-google-map>
+			</div>
+		</div>
+		<!-- Add Location Form End -->
+
+		<!-- Top Spot Data Start -->
+		<div class="columns is-mobile">
+			<div class="column"></div>
+			<div class="column is-three-quarters ">
+				<table id="table" class="table is-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Link</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="topSpot in ctrl.topSpots">
+							<td>{{topSpot.name}}</td>
+							<td>{{topSpot.description}}</td>
+							<td><button class="button is-primary">
+								<a href='https://www.google.com/maps?q= 
+									{{topSpot.location[0]}},{{topSpot.location[1]}}'>
+									Open in Google Maps
+								</a></button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="column"></div>
+		</div>		
+		<!-- Top Spot Data End -->
+
+	<!-- GENERAL DEPENDENCIES -->
+  <script src="bower_components/lodash/lodash.js"></script>	
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+	<!-- GOOGLE MAP API KEY -->
+<!-- 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAohJ1gIU17ImYPxMD21WrWrAM6bUzWm9A"
+        async defer></script> -->
+  
+  <!-- GOOGLE MAP ANGULAR DEPENDENCIES -->
+  <script src="js/ng-map.min.js"></script>
+  <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+	<script src="js/angular-google-maps.min.js"></script>
+	<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+  <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+<!-- 	<script src="node_modules/angular-google-maps-geocoder/dist/angular-google-maps-geocoder.min.js"></script> -->
+	
+	<!-- SD TOP SPOTS JS -->
+  <script src="js/index.js"></script>
+  <script src="js/topspots.controller.js"></script>
+  <script src="js/topspots.factory.js"></script>
+</body>
+</html>
